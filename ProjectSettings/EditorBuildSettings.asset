@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/01. Scene/MainUIScene.unity
+  - enabled: 1
+    path: Assets/01. Scene/MainGameUIScene.unity
+  - enabled: 1
+    path: Assets/01. Scene/GameOverScene.unity
