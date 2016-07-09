@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Score : MonoBehaviour {
+public class PauseScore : MonoBehaviour {
     public GameObject score;
 	// Use this for initialization
 	void Start () {
