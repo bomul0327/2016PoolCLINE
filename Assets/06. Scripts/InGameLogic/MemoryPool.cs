@@ -27,6 +27,7 @@ public class MemoryPool: IEnumerable, System.IDisposable {
         for(int i = 0; i < count; i++) {
             Item item = new Item();
             item.active = false;
+            item.gameObject = GameObject.Instantiate(original) as GameObject;
             item.gameObject.SetActive(false);
             table[i] = item;
         }
