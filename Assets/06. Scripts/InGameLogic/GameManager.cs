@@ -13,6 +13,18 @@ public class GameManager : MonoBehaviour {
 
     private bool isMoving = false;
 
+    //To UI: IsPaused = true/false; 를 설정하게 하시면 됩니다.
+
+    private bool isPaused = false;
+    public bool IsPaused {
+        get {
+            return isPaused;
+        }
+        set {
+            isPaused = value;
+        }
+    }
+
     void Start () {
         for(int i = 0; i < BlockFloor[1].transform.childCount; i++) {
             BlockFloor[1].transform.GetChild(i).GetComponent<Block>().IsBreakable = true;
