@@ -17,7 +17,7 @@ public class UIPlay : MonoBehaviour {
         if (fades >= 0.0f && time >= 2.0f)
         {
             fades += 0.1f;
-            fade.color = new Color(255, 255, 255, fades);
+            fade.color = new Color(255, 0, 0, fades);
             time = 2;
         }
         else if (fades >= 1.0f)
@@ -28,6 +28,6 @@ public class UIPlay : MonoBehaviour {
     }
     public void PlayClick()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 }

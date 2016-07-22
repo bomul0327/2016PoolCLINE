@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Block : MonoBehaviour {
+
     private int hp;
     public int Hp {
         get { return hp; }
@@ -13,4 +14,5 @@ public class Block : MonoBehaviour {
         get { return isBreakable; }
         set { isBreakable = value; }
     }
+   
 }
