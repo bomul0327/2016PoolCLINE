@@ -95,6 +95,7 @@ GameObject:
   - 224: {fileID: 281112583}
   - 222: {fileID: 281112585}
   - 114: {fileID: 281112584}
+  - 114: {fileID: 281112586}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -152,53 +153,26 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Score
+  m_Text: 0
 --- !u!222 &281112585
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 281112582}
---- !u!1 &317906173
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 317906175}
-  - 114: {fileID: 317906174}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &317906174
+--- !u!114 &281112586
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 317906173}
+  m_GameObject: {fileID: 281112582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 735b46657d6f09e4fb332f45e6bb3b99, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bd8e2d56a7d12b4a9e73cc626c90d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &317906175
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 317906173}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  textscore: {fileID: 281112584}
+  totalscore: 0
 --- !u!1 &456162153
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +497,7 @@ GameObject:
   - 222: {fileID: 1869614732}
   - 114: {fileID: 1869614731}
   - 114: {fileID: 1869614730}
+  - 114: {fileID: 1869614733}
   m_Layer: 5
   m_Name: Back
   m_TagString: Back
@@ -586,7 +561,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1869614731}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1869614733}
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1869614731
@@ -622,6 +608,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1869614728}
+--- !u!114 &1869614733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1869614728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea7d63723ba09743b36e495c09a7f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Back: {fileID: 1869614728}
 --- !u!1 &1922674748
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +687,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bset Score
+  m_Text: 'Bset
+
+    0'
 --- !u!222 &1922674751
 CanvasRenderer:
   m_ObjectHideFlags: 0

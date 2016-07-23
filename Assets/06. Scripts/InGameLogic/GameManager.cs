@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour {
 
     private bool isMoving = false;
 
+    //UI score
+    private InGameScore scoreUI;
+  
+
     //To UI: IsPaused = true/false; 를 설정하게 하시면 됩니다.
 
     private bool isPaused = false;
@@ -34,6 +38,9 @@ public class GameManager : MonoBehaviour {
                 BlockFloor[i].transform.GetChild(j).GetComponent<Block>().Hp = 1;
             }
         }
+        //UI score
+        scoreUI = GameObject.Find("Score").GetComponent<InGameScore>();
+
     }
 
     void Update () {
@@ -47,6 +54,10 @@ public class GameManager : MonoBehaviour {
                     hitBlock.Hp--;
                     if(hitBlock.Hp <= 0) {
                         hitBlock.gameObject.SetActive(false);
+
+                        //UI Score 스코어 점수 1이 올라가게 되어있습니다. 사용하시는 곳에다가 쓰시면 됩니다~ 
+                        scoreUI.displayscore(1);                  
+
                         for(int i = 0; i < BlockFloor.Length; i++) {
                             iTween.MoveBy(BlockFloor[i], iTween.Hash("y", -2.00f, "time"
                                 , 1.0f, "delay", 0.5f
