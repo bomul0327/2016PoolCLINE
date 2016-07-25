@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     private bool isMoving = false;
 
     //UI score
+    [SerializeField]
     private InGameScore scoreUI;
   
 
@@ -38,12 +39,11 @@ public class GameManager : MonoBehaviour {
                 BlockFloor[i].transform.GetChild(j).GetComponent<Block>().Hp = 1;
             }
         }
-        //UI score
-        scoreUI = GameObject.Find("Score").GetComponent<InGameScore>();
 
     }
 
     void Update () {
+        if (isPaused) return;
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, 100f);
