@@ -6,7 +6,7 @@ public class Back : MonoBehaviour {
     public GameObject back;
 	// Use this for initialization
 	void Start () {
-        back.SetActive(false);
+       back.SetActive(false);
 	}
 	
 	// Update is called once per frame
