@@ -8,8 +8,9 @@ public class BestScore : MonoBehaviour {
     public GameObject Bestscore;
     private InGameScore Ingamescore;
     public Text textscore;
-    private int bestscore = 0;
+    private int InGameScore = 0;
     private int total;
+    private int Best;
 
 	void Start () {
         Ingamescore = GameObject.Find("Score").GetComponent<InGameScore>();
@@ -21,25 +22,27 @@ public class BestScore : MonoBehaviour {
         {
             Bestscore.SetActive(true);
         }
-        bestscore = PlayerPrefs.GetInt("TOTAL_SCORE", Ingamescore.totalscore);
-
+        InGameScore = PlayerPrefs.GetInt("TOTAL_SCORE", Ingamescore.totalscore);
+        Best = PlayerPrefs.GetInt("Best_SCORE",total);       
 	}	
 	
 	void Update () {
-        int temp = PlayerPrefs.GetInt("TOTAL_SCORE");
-        //  Debug.Log(temp);
-        if (temp >= bestscore)
+     
+        if (Best >= InGameScore)
         {
-            PlayerPrefs.SetInt("TOTAL_SCORE", temp);
-            bestscore = temp;
+            PlayerPrefs.SetInt("TOTAL_SCORE", Best);           
+            total = Best;
+            PlayerPrefs.SetInt("Best_SCORE", total);
         }
 
-        else if (temp <= bestscore)
+        else if (Best <= InGameScore)
         {
-            PlayerPrefs.SetInt("TOTAL_SCORE", bestscore);
-        }
+            PlayerPrefs.SetInt("TOTAL_SCORE", InGameScore);
+            total = InGameScore;
+            PlayerPrefs.SetInt("Best_SCORE", total);
+        }   
 
-        total = PlayerPrefs.GetInt("TOTAL_SCORE");
+    
         if (SceneManager.GetActiveScene().name == "HBJ_PracticeScene")
         {
             textscore.text = " Best <color=0000>" + "\n" + total.ToString() + "</color>";
