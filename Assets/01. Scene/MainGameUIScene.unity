@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 281112582}
+  textscore: {fileID: 0}
 --- !u!1 &317906173
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735b46657d6f09e4fb332f45e6bb3b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPause: 0
+  pause: {fileID: 0}
 --- !u!4 &317906175
 Transform:
   m_ObjectHideFlags: 0
@@ -299,7 +300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1470153067}
-  - {fileID: 1760554208}
+  - {fileID: 1948301281}
   - {fileID: 1869614729}
   - {fileID: 691932918}
   - {fileID: 281112583}
@@ -360,7 +361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd8e2d56a7d12b4a9e73cc626c90d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InGamescore: {fileID: 553411256}
+  textscore: {fileID: 0}
+  totalscore: 0
 --- !u!114 &553411259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,8 +623,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.6, y: -0.8}
-  m_SizeDelta: {x: 976.8, y: 1359.6}
+  m_AnchoredPosition: {x: 13, y: -5}
+  m_SizeDelta: {x: 976, y: 1463}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1470153068
 MonoBehaviour:
@@ -719,11 +721,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!224 &1760554208 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 22490336, guid: 988594b1772a73a46b272fdc44b1d17a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1948301280}
 --- !u!1 &1776168056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,6 +1029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 1922674748}
+  textscore: {fileID: 0}
 --- !u!1001 &1948301280
 Prefab:
   m_ObjectHideFlags: 0
@@ -1142,6 +1140,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1948301281 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1948301280}
 --- !u!1 &1971779877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd8e2d56a7d12b4a9e73cc626c90d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InGamescore: {fileID: 1971779877}
+  textscore: {fileID: 0}
+  totalscore: 0
 --- !u!114 &1971779880
 MonoBehaviour:
   m_ObjectHideFlags: 0

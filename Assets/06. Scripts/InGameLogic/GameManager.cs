@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private InGameScore scoreUI;
-
+    [SerializeField]
+    private GameOverBack gameover;
 
     private bool isPaused = false;
     public bool IsPaused {
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start () {
+       
         blockFloor[1].SetBlocksBreakable(true);
         for (int i = 0; i < blockFloor.Length; i++) {
             blockFloor[i].SetBlocksHp(1, 1);
@@ -60,6 +62,10 @@ public class GameManager : MonoBehaviour {
                     if (hitBlock.Hp <= 0) {
                         hitBlock.gameObject.SetActive(false);
                         scoreUI.displayscore(1);
+                       
+                        //GameOverScene 불러오기 입니다. 원하시는 곳에 가져다가 쓰세요
+                        //gameover.OnGameOver();
+
 
                         //Moving Blocks
                         for (int i = 0; i < blockFloor.Length; i++) {

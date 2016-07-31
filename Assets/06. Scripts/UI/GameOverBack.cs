@@ -19,4 +19,8 @@ public class GameOverBack : MonoBehaviour {
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
+    public void OnGameOver()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
