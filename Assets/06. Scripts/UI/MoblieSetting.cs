@@ -7,7 +7,7 @@ public class MoblieSetting : MonoBehaviour {
 
     void Awake () {
         Screen.orientation = ScreenOrientation.Portrait;
-        Screen.SetResolution(Screen.width, Screen.width * 16 / 9, true);
+        Screen.SetResolution(Screen.width, Screen.width * 16 / 10, true);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
