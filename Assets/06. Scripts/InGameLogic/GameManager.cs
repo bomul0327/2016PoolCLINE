@@ -86,7 +86,8 @@ public class GameManager : MonoBehaviour {
                             , "delay", 0.5f
                             , "oncomplete", "WaterMoveUp"
                             , "oncompletetarget", this.gameObject));
-                        
+                        //score 저장하는 함수입니다. 층수가 올라가면 부르도록 해주시면 돼용
+                        scoreUI.ScoreSave();
                     }
                 }
             }
