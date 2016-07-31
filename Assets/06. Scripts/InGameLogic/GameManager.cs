@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private InGameScore scoreUI;
     [SerializeField]
-    private GameOverBack gameover;
+    private GameOverBack gameOver;
 
     private bool isPaused = false;
     public bool IsPaused {
@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour {
             isPaused = value;
         }
     }
+    delegate void GameOverDelegate ();
 
     void Start () {
        
@@ -61,13 +62,16 @@ public class GameManager : MonoBehaviour {
 
                     if (hitBlock.Hp <= 0) {
                         hitBlock.gameObject.SetActive(false);
-                        scoreUI.displayscore(1);
-                       
-                        //GameOverScene 불러오기 입니다. 원하시는 곳에 가져다가 쓰세요
-                        //gameover.OnGameOver();
-
-
                         //Moving Blocks
+                        iTween.MoveBy(blockFloor[0].transform.root.gameObject, iTween.Hash("y", -2.0f
+                            , "time", speed
+                            , "delay", 0.5f
+                            , "onupdate", "OnMove"
+                            , "onupdatetarget", this.gameObject
+                            , "oncomplete", "displayscore"
+                            , "oncompletetarget", scoreUI.gameObject
+                            , "oncompleteparams", 1));
+                        /*
                         for (int i = 0; i < blockFloor.Length; i++) {
                             iTween.MoveBy(blockFloor[i].gameObject, iTween.Hash("y", -2.0f
                                 , "time", speed
@@ -75,12 +79,16 @@ public class GameManager : MonoBehaviour {
                                 , "onupdate", "OnMove"
                                 , "onupdatetarget", this.gameObject));
                         }
+                        */ 
+                        
                         iTween.Stop(water);
                         iTween.MoveTo(water, iTween.Hash("position", waterInitPos
                             , "time", speed
                             , "delay", 0.5f
                             , "oncomplete", "WaterMoveUp"
                             , "oncompletetarget", this.gameObject));
+                        //score 저장하는 함수입니다. 층수가 올라가면 부르도록 해주시면 돼용
+                        scoreUI.ScoreSave();
                         
                     }
                 }
@@ -118,6 +126,8 @@ public class GameManager : MonoBehaviour {
         iTween.MoveTo(water, iTween.Hash("position", waterEndPos
             , "time", waterSpeed
             , "delay", 0.5f
-            , "easetype", iTween.EaseType.linear));
+            , "easetype", iTween.EaseType.linear
+            , "oncomplete", "OnGameOver"
+            , "oncompletetarget", gameOver.gameObject));
     }
 }
