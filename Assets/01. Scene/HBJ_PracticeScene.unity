@@ -1703,7 +1703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff0eeb39e3217f4183f880585bec311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 894710110}
+  Bestscore: {fileID: 894710110}
   textscore: {fileID: 894710113}
 --- !u!114 &894710113
 MonoBehaviour:
@@ -1737,7 +1737,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Bset
+  m_Text: 'Best
 
     <color=0>0</color>'
 --- !u!222 &894710114
@@ -2381,7 +2381,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 51.419983, y: -26.5}
+  m_AnchoredPosition: {x: 58, y: -26.5}
   m_SizeDelta: {x: 400, y: 104}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1927897682

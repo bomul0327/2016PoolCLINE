@@ -1,30 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BestScore : MonoBehaviour {
 
-    public GameObject score;
-
+    public GameObject Bestscore;
+    private InGameScore Ingamescore;
     public Text textscore;
     private int bestscore=0;
-	
+    private int total;
+ 
+
 	void Start () {
-        score.SetActive(false);
-        bestscore = PlayerPrefs.GetInt("TOTAL_SCORE");   
+        Ingamescore = GameObject.Find("Score").GetComponent<InGameScore>();
+        if (SceneManager.GetActiveScene().name == "HBJ_PracticeScene")
+        {
+            Bestscore.SetActive(false);
+        }
+        else if (SceneManager.GetActiveScene().name == "GameOverScene")
+        {
+            Bestscore.SetActive(true);
+        }
+        bestscore = PlayerPrefs.GetInt("TOTAL_SCORE",Ingamescore.totalscore);
+
+   
 	}	
 	
 	void Update () {
-        
-	}
-
-    public void Pauseclick()
-    {
-
         int temp = PlayerPrefs.GetInt("TOTAL_SCORE");
-        Debug.Log(temp);
-
-        score.SetActive(true);
+      //  Debug.Log(temp);
         if (temp >= bestscore)
         {
             PlayerPrefs.SetInt("TOTAL_SCORE", temp);
@@ -36,13 +41,26 @@ public class BestScore : MonoBehaviour {
             PlayerPrefs.SetInt("TOTAL_SCORE", bestscore);
         }
 
-        int total = PlayerPrefs.GetInt("TOTAL_SCORE");       
-        textscore.text = "Best <color=0000>" + "\n" + total.ToString() + "</color>";        
+        total = PlayerPrefs.GetInt("TOTAL_SCORE");
+        if (SceneManager.GetActiveScene().name == "HBJ_PracticeScene")
+        {
+            textscore.text = " Best <color=0000>" + "\n" + total.ToString() + "</color>";
+        }
+        else if (SceneManager.GetActiveScene().name == "GameOverScene")
+        {
+            textscore.text = " Best <color=#000000>" + "\n" + total.ToString() + "</color>";   
+        }
+
+	}
+
+    public void Pauseclick()
+    {        
+        Bestscore.SetActive(true);      
     }
 
     public void PauseClose()
     {
-        score.SetActive(false);
+        Bestscore.SetActive(false);
     } 
     
 }
