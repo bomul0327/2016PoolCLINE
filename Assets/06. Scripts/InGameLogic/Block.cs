@@ -22,8 +22,8 @@ public class Block : MonoBehaviour {
             return hp;
         }
         set {
-            HpText.text = hp.ToString();
             hp = value;
+            HpText.text = hp.ToString();
         }
     }
 
