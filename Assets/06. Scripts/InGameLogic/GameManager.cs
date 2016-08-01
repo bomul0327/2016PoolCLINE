@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour {
 
                     if (hitBlock.Hp <= 0) {
                         hitBlock.gameObject.SetActive(false);
+
                         //Moving Blocks
                         iTween.MoveBy(blockFloor[0].transform.root.gameObject, iTween.Hash("y", -2.0f
                             , "time", speed
@@ -71,15 +72,7 @@ public class GameManager : MonoBehaviour {
                             , "oncomplete", "displayscore"
                             , "oncompletetarget", scoreUI.gameObject
                             , "oncompleteparams", 1));
-                        /*
-                        for (int i = 0; i < blockFloor.Length; i++) {
-                            iTween.MoveBy(blockFloor[i].gameObject, iTween.Hash("y", -2.0f
-                                , "time", speed
-                                , "delay", 0.5f
-                                , "onupdate", "OnMove"
-                                , "onupdatetarget", this.gameObject));
-                        }
-                        */
+
                         iTween.Stop(water);
                         iTween.MoveTo(water, iTween.Hash("position", waterInitPos
                             , "time", speed
@@ -97,8 +90,8 @@ public class GameManager : MonoBehaviour {
             //Blocks Move to Spawn Position
             if (Vector2.Distance(blockFloor[i].transform.position, fadePos.transform.position) < 0.1f) {
                 blockFloor[i].transform.position = spawnPos.position;
-                blockFloor[i].SetBlocksBreakable(false);
                 blockFloor[i].SetBlocksActive(true);
+                blockFloor[i].SetBlocksHp(1, 1);
             }
 
             //Set Blocks to be breakable
