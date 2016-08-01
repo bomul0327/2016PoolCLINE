@@ -33,7 +33,6 @@ public class BlockFloor : MonoBehaviour {
     public void SetBlocksHp(int minRange, int maxRange) {
         for(int i = 0; i < block.Length; i++) {
             block[i].Hp = Random.Range(minRange, maxRange);
-            block[i].HpText.text = block[i].Hp.ToString();
         }
     }
 

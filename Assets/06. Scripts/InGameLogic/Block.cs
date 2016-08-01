@@ -35,7 +35,7 @@ public class Block : MonoBehaviour {
 
     public TextMesh HpText;
 
-    void Start () {
+    void Awake () {
         HpText = GetComponentInChildren<TextMesh>();
         HpText.text = Hp.ToString();
     }
