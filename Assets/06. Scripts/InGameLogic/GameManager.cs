@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BlockType = Block.BlockType;
 
 public class GameManager : MonoBehaviour {
     [SerializeField]
@@ -42,7 +43,8 @@ public class GameManager : MonoBehaviour {
        
         blockFloor[1].SetBlocksBreakable(true);
         for (int i = 0; i < blockFloor.Length; i++) {
-            blockFloor[i].SetBlocksHp(1, 1);
+            blockFloor[i].SetBlocksProperty(BlockType.bomb, 20);
+            blockFloor[i].SetBlocksHp(1, 5);
         }
         WaterMoveUp();
     }
@@ -62,7 +64,10 @@ public class GameManager : MonoBehaviour {
 
                     if (hitBlock.Hp <= 0) {
                         hitBlock.gameObject.SetActive(false);
-
+                        if(hitBlock.BlockProperty == BlockType.bomb) {
+                            gameOver.OnGameOver();
+                            return;
+                        }
                         //Moving Blocks
                         iTween.MoveBy(blockFloor[0].transform.root.gameObject, iTween.Hash("y", -2.0f
                             , "time", speed
@@ -91,7 +96,9 @@ public class GameManager : MonoBehaviour {
             if (Vector2.Distance(blockFloor[i].transform.position, fadePos.transform.position) < 0.1f) {
                 blockFloor[i].transform.position = spawnPos.position;
                 blockFloor[i].SetBlocksActive(true);
-                blockFloor[i].SetBlocksHp(1, 1);
+                blockFloor[i].ResetBlocksProperty();
+                blockFloor[i].SetBlocksProperty(Block.BlockType.bomb, 20);
+                blockFloor[i].SetBlocksHp(1, 10);
             }
 
             //Set Blocks to be breakable

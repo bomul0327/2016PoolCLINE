@@ -13,6 +13,14 @@ public class Block : MonoBehaviour {
         }
         set {
             blockProperty = value;
+            if(blockProperty == BlockType.bomb) {
+                bombImage.SetActive(true);
+                HpText.gameObject.SetActive(false);
+            }
+            else {
+                bombImage.SetActive(false);
+                HpText.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -35,8 +43,10 @@ public class Block : MonoBehaviour {
 
     public TextMesh HpText;
 
+    [SerializeField]
+    private GameObject bombImage;
+
     void Awake () {
-        HpText = GetComponentInChildren<TextMesh>();
         HpText.text = Hp.ToString();
     }
 

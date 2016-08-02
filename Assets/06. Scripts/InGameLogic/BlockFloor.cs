@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BlockType = Block.BlockType;
 
 public class BlockFloor : MonoBehaviour {
     private GameObject[] blockArray;
@@ -32,13 +33,40 @@ public class BlockFloor : MonoBehaviour {
 
     public void SetBlocksHp(int minRange, int maxRange) {
         for(int i = 0; i < block.Length; i++) {
-            block[i].Hp = Random.Range(minRange, maxRange);
+            switch (block[i].BlockProperty) {
+                case BlockType.normal:
+                    block[i].Hp = Random.Range(minRange, maxRange);
+                    break;
+
+                case BlockType.bomb:
+                    block[i].Hp = 1;
+                    break;
+            }
+
         }
     }
 
     public void SetBlocksActive(bool param) {
         for(int i = 0; i < block.Length; i++) {
             blockArray[i].SetActive(param);
+        }
+    }
+
+    public void SetBlocksProperty (BlockType prop, int prob) {
+        int propNum = 0;
+        for (int i = 0; i < block.Length; i++) {
+            if (propNum < block.Length - 1) {
+                int randomNumber = Random.Range(1, 100);
+                if (randomNumber <= prob) {
+                    block[i].BlockProperty = prop;
+                    propNum++;
+                }
+            }
+        }
+    }
+    public void ResetBlocksProperty () {
+        for(int i = 0; i < block.Length; i++) {
+            block[i].BlockProperty = BlockType.normal;
         }
     }
 }
