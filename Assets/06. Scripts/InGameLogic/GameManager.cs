@@ -72,11 +72,10 @@ public class GameManager : MonoBehaviour {
                         iTween.MoveBy(blockFloor[0].transform.root.gameObject, iTween.Hash("y", -2.0f
                             , "time", speed
                             , "delay", 0.5f
-                            , "onupdate", "OnMove"
+                            , "onupdate", "OnMoveUpdate"
                             , "onupdatetarget", this.gameObject
-                            , "oncomplete", "displayscore"
-                            , "oncompletetarget", scoreUI.gameObject
-                            , "oncompleteparams", 1));
+                            , "oncomplete", "OnMoveComplete"
+                            , "oncompletetarget", this.gameObject));
 
                         iTween.Stop(water);
                         iTween.MoveTo(water, iTween.Hash("position", waterInitPos
@@ -90,17 +89,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void OnMove () {
+    void OnMoveUpdate () {
         for (int i = 0; i < blockFloor.Length; i++) {
-            //Blocks Move to Spawn Position
-            if (Vector2.Distance(blockFloor[i].transform.position, fadePos.transform.position) < 0.1f) {
-                blockFloor[i].transform.position = spawnPos.position;
-                blockFloor[i].SetBlocksActive(true);
-                blockFloor[i].ResetBlocksProperty();
-                blockFloor[i].SetBlocksProperty(Block.BlockType.bomb, 20);
-                blockFloor[i].SetBlocksHp(1, 10);
-            }
-
             //Set Blocks to be breakable
             if (Vector2.Distance(blockFloor[i].transform.position, breakablePos.transform.position) < 0.1f) {
                 blockFloor[i].SetBlocksBreakable(true);
@@ -116,6 +106,20 @@ public class GameManager : MonoBehaviour {
                 blockFloor[index].SetBlocksBreakable(false);
             }
         }
+    }
+
+    void OnMoveComplete () {
+        for (int i = 0; i < blockFloor.Length; i++) {
+            //Blocks Move to Spawn Position
+            if (Vector2.Distance(blockFloor[i].transform.position, fadePos.transform.position) < 0.1f) {
+                blockFloor[i].transform.position = spawnPos.position;
+                blockFloor[i].SetBlocksActive(true);
+                blockFloor[i].ResetBlocksProperty();
+                blockFloor[i].SetBlocksProperty(Block.BlockType.bomb, 20);
+                blockFloor[i].SetBlocksHp(1, 10);
+            }
+        }
+        scoreUI.displayscore(1);
     }
 
     void WaterMoveUp () {
