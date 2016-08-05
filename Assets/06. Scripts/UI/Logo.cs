@@ -25,7 +25,7 @@ public class Logo : MonoBehaviour {
         if (fades >= 0.0f&& time >= 0.1f)
         {
             fades += 0.1f;
-            fade.color = new Color(0, 55, 55, fades);
+            fade.color = new Color(255, 0,0, fades);
             time = 0;
         }
         else if (fades >= 1.0f)
