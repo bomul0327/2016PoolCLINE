@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using BlockType = Block.BlockType;
 
 public class GameManager : MonoBehaviour {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private GameOverBack gameOver;
 
+    private bool isMoving = false;
     private bool isPaused = false;
     public bool IsPaused {
         get {
@@ -37,21 +39,28 @@ public class GameManager : MonoBehaviour {
             isPaused = value;
         }
     }
-    delegate void GameOverDelegate ();
+
+
+    private Stack<IEnumerator> blockStack;
 
     void Start () {
-       
+        blockStack = new Stack<IEnumerator>();
+
         blockFloor[1].SetBlocksBreakable(true);
         for (int i = 0; i < blockFloor.Length; i++) {
             blockFloor[i].SetBlocksProperty(BlockType.bomb, 20);
             blockFloor[i].SetBlocksHp(1, 5);
         }
-        WaterMoveUp();
+        OnWaterMoveUpdate();
     }
 
-    void Update () {
+    void FixedUpdate () {
         if (isPaused) return;
-        //Block Logic
+        OnMouseClicked();
+        BlockStatusCheck();
+    }
+
+    void OnMouseClicked () {
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, 100f);
@@ -64,32 +73,47 @@ public class GameManager : MonoBehaviour {
 
                     if (hitBlock.Hp <= 0) {
                         hitBlock.gameObject.SetActive(false);
-                        if(hitBlock.BlockProperty == BlockType.bomb) {
+                        if (hitBlock.BlockProperty == BlockType.bomb) {
                             gameOver.OnGameOver();
                             return;
                         }
-                        //Moving Blocks
-                        iTween.MoveBy(blockFloor[0].transform.root.gameObject, iTween.Hash("y", -2.0f
-                            , "time", speed
-                            , "delay", 0.5f
-                            , "onupdate", "OnMoveUpdate"
-                            , "onupdatetarget", this.gameObject
-                            , "oncomplete", "OnMoveComplete"
-                            , "oncompletetarget", this.gameObject));
-
-                        iTween.Stop(water);
-                        iTween.MoveTo(water, iTween.Hash("position", waterInitPos
-                            , "time", speed
-                            , "delay", 0.5f
-                            , "oncomplete", "WaterMoveUp"
-                            , "oncompletetarget", this.gameObject));
+                        blockStack.Push(BlockMove());
                     }
                 }
             }
         }
     }
 
-    void OnMoveUpdate () {
+    void BlockStatusCheck () {
+        if (blockStack.Count > 0 && !isMoving) {
+            StartCoroutine(blockStack.Pop());
+            StartCoroutine("WaterMove");
+            isMoving = true;
+        }
+    }
+
+    IEnumerator BlockMove () {
+        iTween.MoveBy(blockFloor[0].transform.root.gameObject, iTween.Hash("y", -2.0f
+            , "time", speed
+            , "onupdate", "OnBlockMoveUpdate"
+            , "onupdatetarget", this.gameObject
+            , "oncomplete", "OnBlockMoveComplete"
+            , "oncompletetarget", this.gameObject));
+
+        yield return null;
+    }
+
+    IEnumerator WaterMove () {
+        //iTween.Stop(water);
+        iTween.MoveTo(water, iTween.Hash("position", waterInitPos
+            , "time", speed
+            , "oncomplete", "OnWaterMoveUpdate"
+            , "oncompletetarget", this.gameObject));
+
+        yield return null;
+    }
+
+    void OnBlockMoveUpdate () {
         for (int i = 0; i < blockFloor.Length; i++) {
             //Set Blocks to be breakable
             if (Vector2.Distance(blockFloor[i].transform.position, breakablePos.transform.position) < 0.1f) {
@@ -108,7 +132,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void OnMoveComplete () {
+    void OnBlockMoveComplete () {
         for (int i = 0; i < blockFloor.Length; i++) {
             //Blocks Move to Spawn Position
             if (Vector2.Distance(blockFloor[i].transform.position, fadePos.transform.position) < 0.1f) {
@@ -120,9 +144,10 @@ public class GameManager : MonoBehaviour {
             }
         }
         scoreUI.displayscore(1);
+        isMoving = false;
     }
 
-    void WaterMoveUp () {
+    void OnWaterMoveUpdate () {
         iTween.MoveTo(water, iTween.Hash("position", waterEndPos
             , "time", waterSpeed
             , "delay", 0.5f
@@ -130,4 +155,5 @@ public class GameManager : MonoBehaviour {
             , "oncomplete", "OnGameOver"
             , "oncompletetarget", gameOver.gameObject));
     }
+
 }
