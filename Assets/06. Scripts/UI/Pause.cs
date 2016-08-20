@@ -16,14 +16,14 @@ public class Pause : MonoBehaviour {
 	void Update () {
     
 	}
-    public void Pauseclick()
+    public void PauseClick()//pause클릭 했을 때 
     {
         pause.SetActive(false);
         Time.timeScale = 0.0f;   
         gamemanager.IsPaused = true;
         Debug.Log(gamemanager.IsPaused);
-    }  
-    public void pauseclose()
+    }
+    public void PauseClose()//pause 닫았을 때
     {
         pause.SetActive(true);
         gamemanager.IsPaused = false;

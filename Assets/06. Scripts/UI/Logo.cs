@@ -5,17 +5,17 @@ public class Logo : MonoBehaviour {
     public UnityEngine.UI.Image fade;
     float fades = 0.0f;
     float time = 0;
-    Vector3 UPmax;
-    Vector3 UPmin;
+    Vector3 upMax;
+    Vector3 upMin;//벡터값 미니멈이 맥스에 닿을 때 까지 만들기위한 변수
     private Transform tr;
 	// Use this for initialization
 	void Start () {
-        UPmax.x = 0;
-        UPmax.y = 3;
-        UPmax.z = 0;
-        UPmin.x = 0;
-        UPmin.y = 1;
-        UPmin.z = 0;
+        upMax.x = 0;
+        upMax.y = 3;
+        upMax.z = 0;
+        upMin.x = 0;
+        upMin.y = 1;
+        upMin.z = 0;
 
         tr = GetComponent<Transform>();
 	}
@@ -32,10 +32,10 @@ public class Logo : MonoBehaviour {
         {
             time = 0;
          
-           if (UPmin.y <= UPmax.y)
+           if (upMin.y <= upMax.y)
             {
-                UPmin.y += 0.1f;
-              tr.Translate(UPmin, Space.Self);
+                upMin.y += 0.1f;
+              tr.Translate(upMin, Space.Self);
             
             }
         }

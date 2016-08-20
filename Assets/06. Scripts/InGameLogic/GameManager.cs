@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour {
                 blockFloor[i].SetBlocksHp(1, 10);
             }
         }
-        scoreUI.displayscore(1);
+        scoreUI.DisplayScore(1);
         isMoving = false;
     }
 

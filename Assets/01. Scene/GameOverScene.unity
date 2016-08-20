@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd8e2d56a7d12b4a9e73cc626c90d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textscore: {fileID: 281112584}
-  totalscore: 0
+  textScore: {fileID: 281112584}
+  totalScore: 0
 --- !u!1 &456162153
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea7d63723ba09743b36e495c09a7f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Back: {fileID: 1869614728}
+  back: {fileID: 1869614728}
 --- !u!1 &1922674748
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,5 +783,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff0eeb39e3217f4183f880585bec311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bestscore: {fileID: 1922674748}
+  bestScore: {fileID: 1922674748}
   textscore: {fileID: 1922674750}

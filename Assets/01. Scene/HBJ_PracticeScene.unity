@@ -393,7 +393,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11467048, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 22490336, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
       propertyPath: m_LocalPosition.x
@@ -482,7 +482,7 @@ Prefab:
     - target: {fileID: 11467048, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 1927897682}
+      objectReference: {fileID: 568009581}
     - target: {fileID: 11467048, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
@@ -590,6 +590,34 @@ Prefab:
     - target: {fileID: 11467048, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11467048, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PauseClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 11467048, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PauseClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 11467048, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 11467048, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 11467048, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11467048, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11467048, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: PauseClick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 988594b1772a73a46b272fdc44b1d17a, type: 2}
@@ -910,7 +938,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 404306399}
-        m_MethodName: Onclick
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -942,19 +970,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1927897682}
-        m_MethodName: Restartclick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1880650889}
-        m_MethodName: pauseclose
+        m_MethodName: PauseClose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1402,7 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea7d63723ba09743b36e495c09a7f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Back: {fileID: 636755477}
+  back: {fileID: 0}
 --- !u!114 &644172579 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11403396, guid: 9d8a29acaec4b1b4f9a0b47e98a624c1,
@@ -1744,8 +1761,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000038147, y: 241}
-  m_SizeDelta: {x: 432.07, y: 297}
+  m_AnchoredPosition: {x: 0.0000095367, y: 239}
+  m_SizeDelta: {x: 608, y: 297}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &894710112
 MonoBehaviour:
@@ -1758,7 +1775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff0eeb39e3217f4183f880585bec311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bestscore: {fileID: 894710110}
+  bestScore: {fileID: 894710110}
   textscore: {fileID: 894710113}
 --- !u!114 &894710113
 MonoBehaviour:
@@ -2303,7 +2320,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 404306399}
-        m_MethodName: Pauseclick
+        m_MethodName: PauseClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2314,7 +2331,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 894710112}
-        m_MethodName: Pauseclick
+        m_MethodName: PauseClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2325,18 +2342,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1880650889}
-        m_MethodName: Pauseclick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1927897682}
-        m_MethodName: Pauseclick
+        m_MethodName: PauseClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2347,11 +2353,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 568009581}
-        m_MethodName: Pauseclick
+        m_MethodName: PauseClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2441,7 +2447,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 58, y: -26.5}
-  m_SizeDelta: {x: 400, y: 104}
+  m_SizeDelta: {x: 556, y: 104}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1927897682
 MonoBehaviour:
@@ -2454,8 +2460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd8e2d56a7d12b4a9e73cc626c90d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textscore: {fileID: 1927897683}
-  totalscore: 0
+  textScore: {fileID: 1927897683}
+  totalScore: 0
 --- !u!114 &1927897683
 MonoBehaviour:
   m_ObjectHideFlags: 0
