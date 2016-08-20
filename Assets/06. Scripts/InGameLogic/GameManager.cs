@@ -54,13 +54,13 @@ public class GameManager : MonoBehaviour {
         OnWaterMoveUpdate();
     }
 
-    void FixedUpdate () {
+    void Update () {
         if (isPaused) return;
-        OnMouseClicked();
-        BlockStatusCheck();
+        StartCoroutine(OnMouseClicked());
+        StartCoroutine(BlockStatusCheck());
     }
 
-    void OnMouseClicked () {
+    IEnumerator OnMouseClicked () {
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, 100f);
@@ -75,21 +75,22 @@ public class GameManager : MonoBehaviour {
                         hitBlock.gameObject.SetActive(false);
                         if (hitBlock.BlockProperty == BlockType.bomb) {
                             gameOver.OnGameOver();
-                            return;
                         }
                         blockStack.Push(BlockMove());
                     }
                 }
             }
         }
+        yield return null;
     }
 
-    void BlockStatusCheck () {
+    IEnumerator BlockStatusCheck () {
         if (blockStack.Count > 0 && !isMoving) {
             StartCoroutine(blockStack.Pop());
             StartCoroutine("WaterMove");
             isMoving = true;
         }
+        yield return null;
     }
 
     IEnumerator BlockMove () {
@@ -139,7 +140,7 @@ public class GameManager : MonoBehaviour {
                 blockFloor[i].transform.position = spawnPos.position;
                 blockFloor[i].SetBlocksActive(true);
                 blockFloor[i].ResetBlocksProperty();
-                blockFloor[i].SetBlocksProperty(Block.BlockType.bomb, 20);
+                blockFloor[i].SetBlocksProperty(BlockType.bomb, 20);
                 blockFloor[i].SetBlocksHp(1, 10);
             }
         }

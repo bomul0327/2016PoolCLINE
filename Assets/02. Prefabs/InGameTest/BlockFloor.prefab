@@ -667,7 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d23e085d0589a84994d9faad7b8d83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HpText: {fileID: 10280740}
+  hpText: {fileID: 10280740}
   bombImage: {fileID: 172544}
 --- !u!114 &11442340
 MonoBehaviour:
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d23e085d0589a84994d9faad7b8d83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HpText: {fileID: 10235262}
+  hpText: {fileID: 10235262}
   bombImage: {fileID: 125108}
 --- !u!114 &11442376
 MonoBehaviour:
@@ -693,7 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d23e085d0589a84994d9faad7b8d83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HpText: {fileID: 10224948}
+  hpText: {fileID: 10224948}
   bombImage: {fileID: 156172}
 --- !u!114 &11443760
 MonoBehaviour:
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d23e085d0589a84994d9faad7b8d83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HpText: {fileID: 10256068}
+  hpText: {fileID: 10256068}
   bombImage: {fileID: 167742}
 --- !u!212 &21210978
 SpriteRenderer:

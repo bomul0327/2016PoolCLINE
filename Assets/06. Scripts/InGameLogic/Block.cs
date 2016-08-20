@@ -13,13 +13,16 @@ public class Block : MonoBehaviour {
         }
         set {
             blockProperty = value;
-            if(blockProperty == BlockType.bomb) {
-                bombImage.SetActive(true);
-                HpText.gameObject.SetActive(false);
-            }
-            else {
-                bombImage.SetActive(false);
-                HpText.gameObject.SetActive(true);
+            switch (blockProperty) {
+                case BlockType.bomb:
+                    bombImage.SetActive(true);
+                    hpText.gameObject.SetActive(false);
+                    break;
+
+                case BlockType.normal:
+                    bombImage.SetActive(false);
+                    hpText.gameObject.SetActive(true);
+                    break;
             }
         }
     }
@@ -31,7 +34,7 @@ public class Block : MonoBehaviour {
         }
         set {
             hp = value;
-            HpText.text = hp.ToString();
+            hpText.text = hp.ToString();
         }
     }
 
@@ -41,13 +44,14 @@ public class Block : MonoBehaviour {
         set { isBreakable = value; }
     }
 
-    public TextMesh HpText;
+    [SerializeField]
+    private TextMesh hpText;
 
     [SerializeField]
     private GameObject bombImage;
 
     void Awake () {
-        HpText.text = Hp.ToString();
+        hpText.text = hp.ToString();
     }
 
 }

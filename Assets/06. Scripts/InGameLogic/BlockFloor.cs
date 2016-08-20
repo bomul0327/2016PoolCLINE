@@ -19,23 +19,23 @@ public class BlockFloor : MonoBehaviour {
 	void Awake () {
         blockArray = new GameObject[transform.childCount];
         block = new Block[blockArray.Length];
-        for(int i = 0; i < blockArray.Length; i++) {
+        for (int i = 0; i < blockArray.Length; i++) {
             blockArray[i] = transform.GetChild(i).gameObject;
             block[i] = blockArray[i].GetComponent<Block>();
         }
-	}
+    }
 
-    public void SetBlocksBreakable(bool param) {
-        for(int i = 0; i < block.Length; i++) {
+    public void SetBlocksBreakable (bool param) {
+        for (int i = 0; i < block.Length; i++) {
             block[i].IsBreakable = param;
         }
     }
 
-    public void SetBlocksHp(int minRange, int maxRange) {
-        for(int i = 0; i < block.Length; i++) {
+    public void SetBlocksHp (int minRange, int maxRange) {
+        for (int i = 0; i < block.Length; i++) {
             switch (block[i].BlockProperty) {
                 case BlockType.normal:
-                    block[i].Hp = Random.Range(minRange, maxRange);
+                    block[i].Hp = Random.Range(minRange, maxRange);                 
                     break;
 
                 case BlockType.bomb:
@@ -52,6 +52,7 @@ public class BlockFloor : MonoBehaviour {
         }
     }
 
+    //SetBlocksProperty should be used before the SetBlocksHp
     public void SetBlocksProperty (BlockType prop, int prob) {
         int propNum = 0;
         for (int i = 0; i < block.Length; i++) {
