@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIPlay : MonoBehaviour {
-    public UnityEngine.UI.Image fade;
+    public Image fade;
     float fades = 0.0f;
     float time = 0; 
-    // Use this for initialization
-    void Start()
-    {
-    }
-    // Update is called once per frame
+
     void Update()
     {
         time += Time.deltaTime;

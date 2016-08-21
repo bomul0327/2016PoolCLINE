@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
             blockFloor[i].SetBlocksProperty(BlockType.bomb, 20);
             blockFloor[i].SetBlocksHp(1, 5);
         }
-        OnWaterMoveUpdate();
+        OnWaterMoveComplete();
     }
 
     void Update () {
@@ -105,10 +105,9 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator WaterMove () {
-        //iTween.Stop(water);
         iTween.MoveTo(water, iTween.Hash("position", waterInitPos
             , "time", speed
-            , "oncomplete", "OnWaterMoveUpdate"
+            , "oncomplete", "OnWaterMoveComplete"
             , "oncompletetarget", this.gameObject));
 
         yield return null;
@@ -148,7 +147,7 @@ public class GameManager : MonoBehaviour {
         isMoving = false;
     }
 
-    void OnWaterMoveUpdate () {
+    void OnWaterMoveComplete () {
         iTween.MoveTo(water, iTween.Hash("position", waterEndPos
             , "time", waterSpeed
             , "delay", 0.5f

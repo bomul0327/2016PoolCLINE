@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class Logo : MonoBehaviour {
-    public UnityEngine.UI.Image fade;
+    public Image fade;
     float fades = 0.0f;
     float time = 0;
     Vector3 upMax;
-    Vector3 upMin;//벡터값 미니멈이 맥스에 닿을 때 까지 만들기위한 변수
+    Vector3 upMin;  //벡터값 미니멈이 맥스에 닿을 때 까지 만들기위한 변수
     private Transform tr;
-	// Use this for initialization
+
 	void Start () {
         upMax.x = 0;
         upMax.y = 3;
@@ -19,7 +19,7 @@ public class Logo : MonoBehaviour {
 
         tr = GetComponent<Transform>();
 	}
-	// Update is called once per frame
+
 	void Update () {
         time += Time.deltaTime;
         if (fades >= 0.0f&& time >= 0.1f)

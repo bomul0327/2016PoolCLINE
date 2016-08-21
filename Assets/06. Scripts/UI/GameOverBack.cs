@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 
 
 public class GameOverBack : MonoBehaviour {
-    public GameObject back;
-    private InGameScore ingamescore;
+
+    private InGameScore inGameScore;
 	// Use this for initialization
 	void Start () {
-        ingamescore = GameObject.Find("Score").GetComponent<InGameScore>();
+        inGameScore = GameObject.Find("Score").GetComponent<InGameScore>();
 	}
 	
 	// Update is called once per frame
@@ -22,7 +22,7 @@ public class GameOverBack : MonoBehaviour {
     }
     public void OnGameOver()//스코어 저장하고 게임 오버씬으로 전환
     {
-        ingamescore.ScoreSave();
+        inGameScore.ScoreSave();
         SceneManager.LoadScene(2);
 
     }

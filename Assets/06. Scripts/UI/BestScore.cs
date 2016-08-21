@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 public class BestScore : MonoBehaviour {
 
     public GameObject bestScore;
-    private InGameScore Ingamescore;//인게임 스코어를 받아오기 위한 변수
+    private InGameScore inGameScoreInst;//인게임 스코어를 받아오기 위한 변수
     public Text textscore;
     private int inGameScore = 0;//인게임 스코어를 받아와서 베스트 스코어랑 비교
     private int total;
     private int best;
 
 	void Start () {
-        Ingamescore = GameObject.Find("Score").GetComponent<InGameScore>();
+        inGameScoreInst = GameObject.Find("Score").GetComponent<InGameScore>();
         if (SceneManager.GetActiveScene().name == "HBJ_PracticeScene")
         {
             bestScore.SetActive(false);
@@ -22,7 +22,7 @@ public class BestScore : MonoBehaviour {
         {
             bestScore.SetActive(true);
         }
-        inGameScore = PlayerPrefs.GetInt("TOTAL_SCORE", Ingamescore.totalScore);
+        inGameScore = PlayerPrefs.GetInt("TOTAL_SCORE", inGameScoreInst.totalScore);
         best = PlayerPrefs.GetInt("Best_SCORE",total);       
 	}	
 	

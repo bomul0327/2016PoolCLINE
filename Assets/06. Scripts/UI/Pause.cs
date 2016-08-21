@@ -3,16 +3,13 @@ using System.Collections;
 
 public class Pause : MonoBehaviour {
     public GameObject pause;
-    private GameManager gamemanager;
+    private GameManager gameManager;
 
-	// Use this for initialization
 	void Start () {
-        gamemanager = GameObject.Find("Main Camera").GetComponent<GameManager>();        
-        gamemanager.IsPaused = false;
-        Debug.Log(gamemanager.IsPaused);
+        gameManager = GameObject.Find("Main Camera").GetComponent<GameManager>();        
+        gameManager.IsPaused = false;
 	}
 	
-	// Update is called once per frame
 	void Update () {
     
 	}
@@ -20,14 +17,12 @@ public class Pause : MonoBehaviour {
     {
         pause.SetActive(false);
         Time.timeScale = 0.0f;   
-        gamemanager.IsPaused = true;
-        Debug.Log(gamemanager.IsPaused);
+        gameManager.IsPaused = true;
     }
     public void PauseClose()//pause 닫았을 때
     {
         pause.SetActive(true);
-        gamemanager.IsPaused = false;
-        Debug.Log(gamemanager.IsPaused);
+        gameManager.IsPaused = false;
     }
 
   
