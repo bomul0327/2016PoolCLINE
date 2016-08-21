@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 public class InGameScore : MonoBehaviour {
 
    public Text textScore;
-   public int totalScore = 0;
-   private int scoreBuffer;
+   public int totalScore = 0; 
 
 	void Start () {
         if (SceneManager.GetActiveScene().name == "HBJ_PracticeScene")
@@ -16,7 +15,7 @@ public class InGameScore : MonoBehaviour {
         }
         else if (SceneManager.GetActiveScene().name == "GameOverScene")
         {
-            DisplayScore(PlayerPrefs.GetInt("SCORE", scoreBuffer));
+            DisplayScore(PlayerPrefs.GetInt("SCORE", totalScore));
         }
 	}
 
@@ -26,14 +25,12 @@ public class InGameScore : MonoBehaviour {
 
     public void ScoreSave()
     {
-        PlayerPrefs.SetInt("TOTAL_SCORE", totalScore);
-        PlayerPrefs.SetInt("SCORE", scoreBuffer);
+        PlayerPrefs.SetInt("TOTAL_SCORE", totalScore);      
     }
     public void DisplayScore(int score)
     {
         totalScore += score;
-        textScore.text = totalScore.ToString();
-        scoreBuffer += score;
+        textScore.text = totalScore.ToString();      
     }
     
 }
