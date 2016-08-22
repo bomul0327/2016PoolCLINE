@@ -37,16 +37,19 @@ public class BlockFloor : MonoBehaviour {
                 case BlockType.normal:
                     int tmpHp = Random.Range(minRange, maxRange);
                     //체력이 같으면 다시 랜덤
-                    for(int j = 0; j < i;) {
-                        if(block[j].BlockProperty != BlockType.normal) {
+                    for (int j = 0; j < i;) {
+                        if (block[j].BlockProperty != BlockType.normal) {
                             j++;
                             continue;
                         }
-                        else if(tmpHp == block[j].Hp) {
+                        else if (tmpHp == block[j].Hp) {
                             tmpHp = Random.Range(minRange, maxRange);
+                            j = 0;
                             continue;
                         }
-                        j++;
+                        else {
+                            j++;
+                        }
                     }
                     block[i].Hp = tmpHp;         
                     break;
