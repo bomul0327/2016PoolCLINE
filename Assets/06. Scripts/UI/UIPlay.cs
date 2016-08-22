@@ -25,6 +25,6 @@ public class UIPlay : MonoBehaviour {
     }
     public void PlayClick()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("InGameScene");
     }
 }

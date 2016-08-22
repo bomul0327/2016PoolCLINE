@@ -7,33 +7,26 @@ public class InGameScore : MonoBehaviour {
 
    public Text textScore;
    public int totalScore = 0;
-   private int scoreBuffer;
 
 	void Start () {
-        if (SceneManager.GetActiveScene().name == "HBJ_PracticeScene")
+        if (SceneManager.GetActiveScene().name == "InGameScene")
         {
             DisplayScore(0);
         }
         else if (SceneManager.GetActiveScene().name == "GameOverScene")
         {
-            DisplayScore(PlayerPrefs.GetInt("SCORE", scoreBuffer));
+            DisplayScore(PlayerPrefs.GetInt("TOTAL_SCORE", totalScore));
         }
-	}
-
-	void Update () {
-
 	}
 
     public void ScoreSave()
     {
         PlayerPrefs.SetInt("TOTAL_SCORE", totalScore);
-        PlayerPrefs.SetInt("SCORE", scoreBuffer);
     }
     public void DisplayScore(int score)
     {
-        totalScore += score;
+        totalScore = score;
         textScore.text = totalScore.ToString();
-        scoreBuffer += score;
     }
     
 }

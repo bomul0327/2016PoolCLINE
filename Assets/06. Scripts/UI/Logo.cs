@@ -7,17 +7,10 @@ public class Logo : MonoBehaviour {
     float time = 0;
     Vector3 upMax;
     Vector3 upMin;  //벡터값 미니멈이 맥스에 닿을 때 까지 만들기위한 변수
-    private Transform tr;
 
 	void Start () {
-        upMax.x = 0;
-        upMax.y = 3;
-        upMax.z = 0;
-        upMin.x = 0;
-        upMin.y = 1;
-        upMin.z = 0;
-
-        tr = GetComponent<Transform>();
+        upMax = new Vector3(0f, 3f, 0f);
+        upMin = new Vector3(0f, 1f, 0f);
 	}
 
 	void Update () {
@@ -35,7 +28,7 @@ public class Logo : MonoBehaviour {
            if (upMin.y <= upMax.y)
             {
                 upMin.y += 0.1f;
-              tr.Translate(upMin, Space.Self);
+              transform.Translate(upMin, Space.Self);
             
             }
         }

@@ -25,9 +25,7 @@ public class GameManager : MonoBehaviour {
     private float waterSpeed = 5.0f;
 
     [SerializeField]
-    private InGameScore scoreUI;
-    [SerializeField]
-    private GameOverBack gameOver;
+    private InGameUI UIMgr;
 
     private bool isMoving = false;
     private bool isPaused = false;
@@ -40,6 +38,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private int currentScore = 0;
 
     private Stack<IEnumerator> blockStack;
 
@@ -74,7 +73,7 @@ public class GameManager : MonoBehaviour {
                     if (hitBlock.Hp <= 0) {
                         hitBlock.gameObject.SetActive(false);
                         if (hitBlock.BlockProperty == BlockType.bomb) {
-                            gameOver.OnGameOver();
+                            UIMgr.OnGameOver();
                         }
                         blockStack.Push(BlockMove());
                     }
@@ -143,7 +142,7 @@ public class GameManager : MonoBehaviour {
                 blockFloor[i].SetBlocksHp(1, 10);
             }
         }
-        scoreUI.DisplayScore(1);
+        UIMgr.DisplayScore(++currentScore);
         isMoving = false;
     }
 
@@ -153,7 +152,7 @@ public class GameManager : MonoBehaviour {
             , "delay", 0.5f
             , "easetype", iTween.EaseType.linear
             , "oncomplete", "OnGameOver"
-            , "oncompletetarget", gameOver.gameObject));
+            , "oncompletetarget", UIMgr.gameObject));
     }
 
 }

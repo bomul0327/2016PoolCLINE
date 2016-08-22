@@ -14,7 +14,7 @@ public class BestScore : MonoBehaviour {
 
 	void Start () {
         inGameScoreInst = GameObject.Find("Score").GetComponent<InGameScore>();
-        if (SceneManager.GetActiveScene().name == "HBJ_PracticeScene")
+        if (SceneManager.GetActiveScene().name == "InGameScene")
         {
             bestScore.SetActive(false);
         }
@@ -22,34 +22,34 @@ public class BestScore : MonoBehaviour {
         {
             bestScore.SetActive(true);
         }
-        inGameScore = PlayerPrefs.GetInt("TOTAL_SCORE", inGameScoreInst.totalScore);
-        best = PlayerPrefs.GetInt("Best_SCORE",total);       
+        inGameScore = PlayerPrefs.GetInt("TotalScore", inGameScoreInst.totalScore);
+        best = PlayerPrefs.GetInt("BestScore",total);       
 	}	
 	
 	void Update () {
      
         if (best >= inGameScore)
         {
-            PlayerPrefs.SetInt("TOTAL_SCORE", best);           
+            PlayerPrefs.SetInt("TotalScore", best);           
             total = best;
-            PlayerPrefs.SetInt("Best_SCORE", total);
+            PlayerPrefs.SetInt("BestScore", total);
         }
 
         else if (best <= inGameScore)
         {
-            PlayerPrefs.SetInt("TOTAL_SCORE",inGameScore);
+            PlayerPrefs.SetInt("TotalScore",inGameScore);
             total = inGameScore;
-            PlayerPrefs.SetInt("Best_SCORE", total);
+            PlayerPrefs.SetInt("BestScore", total);
         }   
 
     
-        if (SceneManager.GetActiveScene().name == "HBJ_PracticeScene")
+        if (SceneManager.GetActiveScene().name == "InGameScene")
         {
-            textscore.text = " Best <color=0000>" + "\n" + total.ToString() + "</color>";
+            textscore.text = "BEST\n" + total.ToString();
         }
         else if (SceneManager.GetActiveScene().name == "GameOverScene")
         {
-            textscore.text = " Best <color=#000000>" + "\n" + total.ToString() + "</color>";
+            textscore.text = "BEST\n" + total.ToString();
         }
 	}
 
