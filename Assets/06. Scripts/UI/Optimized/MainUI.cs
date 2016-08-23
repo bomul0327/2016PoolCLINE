@@ -23,7 +23,7 @@ public class MainUI : MonoBehaviour {
         float fade = 0.0f;
         while (fade <= 1.0f) {
             fade += 0.1f;
-            playButtonImage.color = new Color(255, 0, 0, fade);
+            playButtonImage.color = new Color(1, 1,1, fade);                      
             yield return null;
         }
     }
@@ -36,7 +36,7 @@ public class MainUI : MonoBehaviour {
         float fade = 0.0f;
         while (fade <= 1.0f) {
             fade += 0.1f;
-            logoImage.color = new Color(255, 0, 0, fade);
+            logoImage.color = new Color(255, 255, 255, fade);
             yield return new WaitForSeconds(0.1f);
         }
         while (fade >= 1.0f && upMin.y <= upMax.y) {
