@@ -14,7 +14,7 @@ public class MainUI : MonoBehaviour {
         StartCoroutine(PlayButtonFade());
     }
 
-    public void OnPlayClick () {
+    public void OnPlayClick () {        
         SceneManager.LoadScene("InGameScene");
     }
 
@@ -23,7 +23,7 @@ public class MainUI : MonoBehaviour {
         float fade = 0.0f;
         while (fade <= 1.0f) {
             fade += 0.1f;
-            playButtonImage.color = new Color(1, 1,1, fade);                      
+            playButtonImage.color = new Color(1, 0,0, fade);                      
             yield return null;
         }
     }

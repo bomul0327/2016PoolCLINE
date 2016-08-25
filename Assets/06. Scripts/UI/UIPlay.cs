@@ -14,7 +14,7 @@ public class UIPlay : MonoBehaviour {
         if (fades >= 0.0f && time >= 2.0f)
         {
             fades += 0.1f;
-            fade.color = new Color(255, 0, 0, fades);
+            fade.color = new Color(0, 0, 0, fades);
             time = 2;
         }
         else if (fades >= 1.0f)

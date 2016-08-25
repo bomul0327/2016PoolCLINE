@@ -1,9 +1,14 @@
 fileFormatVersion: 2
 guid: 629defb4a8213ec49bcc0cae4207cab2
-timeCreated: 1472113177
+timeCreated: 1472114111
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: play UI_0
+    21300002: play UI_1
+    21300004: play UI_2
+    21300006: play UI_3
+    21300008: play UI_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +35,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +43,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +54,113 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: play UI_0
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 311
+        width: 242
+        height: 53
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -71, y: -19}
+        - {x: -109, y: 0}
+        - {x: -121, y: 0}
+        - {x: -121, y: -53}
+        - {x: -101, y: -53}
+        - {x: -74, y: -35}
+        - {x: -70, y: -32}
+        - {x: -70, y: -24}
+      - - {x: -60, y: -1}
+        - {x: -60, y: -52}
+        - {x: -42, y: -52}
+        - {x: -17, y: -30}
+        - {x: -17, y: -11}
+        - {x: -21, y: -1}
+      - - {x: -13, y: -1}
+        - {x: -13, y: -52}
+        - {x: 75, y: -52}
+        - {x: 75, y: -16}
+        - {x: 73, y: -1}
+      - - {x: 72, y: -1}
+        - {x: 72, y: -13}
+        - {x: 88, y: -52}
+        - {x: 105, y: -52}
+        - {x: 108, y: -51}
+        - {x: 121, y: -10}
+        - {x: 121, y: -1}
+    - name: play UI_1
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 314
+        width: 39
+        height: 47
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.5, y: 0}
+        - {x: -19.5, y: -47}
+        - {x: -4.5, y: -47}
+        - {x: 19.5, y: -32}
+        - {x: 19.5, y: 0}
+    - name: play UI_2
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 314
+        width: 34
+        height: 47
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 0}
+        - {x: -17, y: -47}
+        - {x: 17, y: -47}
+        - {x: 17, y: -35}
+        - {x: -3, y: 0}
+    - name: play UI_3
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 314
+        width: 48
+        height: 47
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: -11}
+        - {x: 10, y: 0}
+        - {x: -10, y: 0}
+        - {x: -14, y: -11}
+        - {x: -24, y: -37}
+        - {x: -24, y: -47}
+        - {x: 24, y: -47}
+        - {x: 24, y: -38}
+        - {x: 17, y: -19}
+    - name: play UI_4
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 314
+        width: 47
+        height: 47
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.5, y: 0}
+        - {x: -23.5, y: -7}
+        - {x: -8.5, y: -47}
+        - {x: 8.5, y: -47}
+        - {x: 23.5, y: -6}
+        - {x: 23.5, y: 0}
     outline: []
   spritePackingTag: 
   userData: 
