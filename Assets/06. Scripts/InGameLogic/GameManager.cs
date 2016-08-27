@@ -23,6 +23,17 @@ public class GameManager : MonoBehaviour {
     private float speed = 1.0f;
     [SerializeField]
     private float waterSpeed = 5.0f;
+    [SerializeField]
+    private int blockHpMinRange = 1;
+    [SerializeField]
+    private int blockHpMaxRange = 5;
+
+    [SerializeField]
+    private int maxCycle = 3;
+    [SerializeField]
+    private int minCycle = 6;
+    [SerializeField]
+    private int waterSpeedCycle = 10;
 
     [SerializeField]
     private InGameUI UIMgr;
@@ -48,7 +59,7 @@ public class GameManager : MonoBehaviour {
         blockFloor[1].SetBlocksBreakable(true);
         for (int i = 0; i < blockFloor.Length; i++) {
             blockFloor[i].SetBlocksProperty(BlockType.bomb, 20);
-            blockFloor[i].SetBlocksHp(1, 5);
+            blockFloor[i].SetBlocksHp(blockHpMinRange, blockHpMaxRange);
         }
         OnWaterMoveComplete();
     }
@@ -57,6 +68,7 @@ public class GameManager : MonoBehaviour {
         if (isPaused) return;
         StartCoroutine(OnMouseClicked());
         StartCoroutine(BlockStatusCheck());
+        UIMgr.DisplayWaterDistance(Vector2.Distance(water.transform.position, waterEndPos.position));
     }
 
     IEnumerator OnMouseClicked () {
@@ -104,7 +116,8 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator WaterMove () {
-        iTween.MoveTo(water, iTween.Hash("position", waterInitPos
+        iTween.StopByName("waterMoveUp");
+        iTween.MoveBy(water, iTween.Hash("y", -2.0f
             , "time", speed
             , "oncomplete", "OnWaterMoveComplete"
             , "oncompletetarget", this.gameObject));
@@ -139,20 +152,27 @@ public class GameManager : MonoBehaviour {
                 blockFloor[i].SetBlocksActive(true);
                 blockFloor[i].ResetBlocksProperty();
                 blockFloor[i].SetBlocksProperty(BlockType.bomb, 20);
-                blockFloor[i].SetBlocksHp(1, 10);
+                blockFloor[i].SetBlocksHp(blockHpMinRange, blockHpMaxRange);
             }
         }
         UIMgr.DisplayScore(++currentScore);
+        SettingLevel(currentScore);
         isMoving = false;
     }
 
     void OnWaterMoveComplete () {
-        iTween.MoveTo(water, iTween.Hash("position", waterEndPos
-            , "time", waterSpeed
+        iTween.MoveTo(water, iTween.Hash("name", "waterMoveUp"
+            ,"position", waterEndPos
+            , "speed", waterSpeed
             , "delay", 0.5f
             , "easetype", iTween.EaseType.linear
             , "oncomplete", "OnGameOver"
-            , "oncompletetarget", UIMgr.gameObject));
+            , "oncompletetarget", UIMgr.gameObject));           
     }
 
+    void SettingLevel (int currentScore) {
+        blockHpMaxRange =  5 + currentScore / maxCycle;
+        blockHpMinRange = 1 + currentScore / minCycle;
+        waterSpeed = 0.67f + ((currentScore / waterSpeedCycle)) ;
+    }
 }

@@ -30,6 +30,9 @@ public class InGameUI : MonoBehaviour {
     [SerializeField]
     private GameObject continueObject;
 
+    [SerializeField]
+    private Text textWaterDistance;
+
     void Start () {
         DisplayScore(0);
 
@@ -48,9 +51,13 @@ public class InGameUI : MonoBehaviour {
         }
     }
 
-    public void DisplayScore(int score) {
+    public void DisplayScore (int score) {
         totalScore = score;
         textTotalScore.text = totalScore.ToString();
+    }
+
+    public void DisplayWaterDistance (float dist) {
+        textWaterDistance.text = string.Format("{0:N2}", dist);
     }
 
     public void OnBackClick () {
