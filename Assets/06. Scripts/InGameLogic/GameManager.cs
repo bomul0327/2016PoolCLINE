@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator WaterMove () {
-        iTween.StopByName("waterMoveUp");
+        iTween.StopByName(water, "waterMoveUp");
         iTween.MoveBy(water, iTween.Hash("y", -2.0f
             , "time", speed
             , "oncomplete", "OnWaterMoveComplete"
@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour {
             }
         }
         UIMgr.DisplayScore(++currentScore);
-        SettingLevel(currentScore);
+        StartCoroutine(SettingLevel(currentScore));
         isMoving = false;
     }
 
@@ -170,9 +170,10 @@ public class GameManager : MonoBehaviour {
             , "oncompletetarget", UIMgr.gameObject));           
     }
 
-    void SettingLevel (int currentScore) {
+    IEnumerator SettingLevel (int currentScore) {
         blockHpMaxRange =  5 + currentScore / maxCycle;
         blockHpMinRange = 1 + currentScore / minCycle;
-        waterSpeed = 0.67f + ((currentScore / waterSpeedCycle)) ;
+        waterSpeed = 0.67f + ((currentScore / waterSpeedCycle));
+        yield return null;
     }
 }
