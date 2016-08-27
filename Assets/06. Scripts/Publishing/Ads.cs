@@ -3,8 +3,12 @@ using System.Collections;
 using UnityEngine.Advertisements;
 
 public class Ads : MonoBehaviour {
-    void Start () {
-        ShowAd();
+    private int prob = 10;
+
+    void Start() {
+        if (Random.Range(0, 99) < prob) {
+            ShowAd();
+        }
     }
 
     public void ShowAd () {
