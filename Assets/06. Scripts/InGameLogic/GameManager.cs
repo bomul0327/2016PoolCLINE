@@ -29,14 +29,18 @@ public class GameManager : MonoBehaviour {
     private int blockHpMaxRange = 5;
 
     [SerializeField]
+    private InGameUI UIMgr;
+
+    [Header("Level Balance Variables")]
+    [SerializeField]
     private int maxCycle = 3;
     [SerializeField]
     private int minCycle = 6;
     [SerializeField]
     private int waterSpeedCycle = 10;
 
-    [SerializeField]
-    private InGameUI UIMgr;
+    [Space(10)]
+
 
     private bool isMoving = false;
     private bool isPaused = false;
