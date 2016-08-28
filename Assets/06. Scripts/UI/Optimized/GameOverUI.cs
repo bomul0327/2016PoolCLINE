@@ -24,4 +24,15 @@ public class GameOverUI : MonoBehaviour {
         SceneManager.LoadScene("MainUIScene");
     }  
 	
+    public void OnLeaderboardClick() {
+
+    }
+
+    public void OnAchievementClick() {
+
+    }
+
+    public void OnNoAdsClick() {
+        IAPManager.Instance.BuyNoAds();
+    }
 }

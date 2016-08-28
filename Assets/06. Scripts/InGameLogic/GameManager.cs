@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator WaterMove () {
-        iTween.StopByName("waterMoveUp");
+        iTween.StopByName(water, "waterMoveUp");
         iTween.MoveBy(water, iTween.Hash("y", -2.0f
             , "time", speed
             , "oncomplete", "OnWaterMoveComplete"
