@@ -61,7 +61,5 @@ public class Block : MonoBehaviour {
         initPos = this.transform.localPosition;
     }
     
-    public void ResetInitPos() {
-        transform.localPosition = InitPos;
-    }
+
 }

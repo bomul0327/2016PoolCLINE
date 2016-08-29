@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour {
     private int blockHpMinRange = 1;
     [SerializeField]
     private int blockHpMaxRange = 5;
+    [SerializeField]
+    private float lowPitch = 0.95f;
+    [SerializeField]
+    private float highPitch = 1.05f;
 
     [SerializeField]
     private InGameUI UIMgr;
@@ -84,6 +88,51 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator OnMouseClicked () {
+#if UNITY_ANDROID
+        int touchCount = Input.touchCount;
+        if(touchCount == 0) { yield return null; }
+        else {
+
+            for(int j = 0; j < touchCount; j++) {
+                Touch touch = Input.GetTouch(j);
+                Vector2 touchPos = touch.position;
+                if(touch.phase == TouchPhase.Began) {
+                    Ray ray = Camera.main.ScreenPointToRay(touchPos);
+                    RaycastHit2D hit = Physics2D.GetRayIntersection(ray, 100f);
+
+                    if (hit.collider && hit.transform.CompareTag("Block")) {
+                        Block hitBlock = hit.transform.GetComponent<Block>();
+
+                        if (hitBlock.IsBreakable) {
+                            hitBlock.Hp--;
+                            iTween.ShakePosition(hitBlock.gameObject, iTween.Hash("name", "blockShake"
+                                , "x", 0.1f
+                                , "y", 0.1f
+                                , "time", 0.05f
+                                , "oncomplete", "hitBlock.ResetInitPos"
+                                , "oncompletetarget", hitBlock.gameObject));
+                            StartCoroutine(PlaySfx(hitSound));
+
+                            if (hitBlock.Hp <= 0) {
+                                BlockFloor hitBlockFloor = hitBlock.GetComponentInParent<BlockFloor>();
+                                for (int i = 0; i < hitBlockFloor.Block.Length; i++) {
+                                    iTween.StopByName(hitBlockFloor.Block[i].gameObject, "blockShake");
+                                }
+                                hitBlockFloor.ResetLocalPosition();
+                                hitBlockFloor.SetBlocksBreakable(false);
+                                hitBlock.gameObject.SetActive(false);
+                                if (hitBlock.BlockProperty == BlockType.bomb) {
+                                    UIMgr.OnGameOver();
+                                }
+                                blockStack.Push(BlockMove());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+#endif
+#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, 100f);
@@ -99,7 +148,7 @@ public class GameManager : MonoBehaviour {
                         , "time", 0.05f
                         , "oncomplete", "hitBlock.ResetInitPos"
                         , "oncompletetarget", hitBlock.gameObject));
-                    audioSource.PlayOneShot(hitSound);
+                    StartCoroutine(PlaySfx(hitSound));
 
                     if (hitBlock.Hp <= 0) {
                         BlockFloor hitBlockFloor = hitBlock.GetComponentInParent<BlockFloor>();
@@ -117,7 +166,9 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+#endif
         yield return null;
+
     }
 
     IEnumerator BlockStatusCheck () {
@@ -203,6 +254,13 @@ public class GameManager : MonoBehaviour {
         blockHpMaxRange =  5 + currentScore / maxCycle;
         blockHpMinRange = 1 + currentScore / minCycle;
         waterSpeed = 0.67f + ((currentScore / waterSpeedCycle));
+        yield return null;
+    }
+
+    IEnumerator PlaySfx (AudioClip sound) {
+        float randomPitch = Random.Range(lowPitch, highPitch);
+        audioSource.pitch = randomPitch;
+        audioSource.PlayOneShot(sound);
         yield return null;
     }
 }
