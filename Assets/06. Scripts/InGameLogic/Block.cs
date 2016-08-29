@@ -44,6 +44,12 @@ public class Block : MonoBehaviour {
         set { isBreakable = value; }
     }
 
+    private Vector3 initPos;
+    public Vector3 InitPos {
+        get { return initPos; }
+        set { initPos = value; }
+    }
+
     [SerializeField]
     private TextMesh hpText;
 
@@ -52,6 +58,10 @@ public class Block : MonoBehaviour {
 
     void Awake () {
         hpText.text = hp.ToString();
+        initPos = this.transform.localPosition;
     }
-
+    
+    public void ResetInitPos() {
+        transform.localPosition = InitPos;
+    }
 }

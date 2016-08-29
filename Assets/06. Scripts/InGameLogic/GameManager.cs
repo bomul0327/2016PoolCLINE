@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
     private BlockFloor[] blockFloor;
     [SerializeField]
     private GameObject water;
+    [SerializeField]
+    private AudioClip hitSound;
 
     [SerializeField]
     private float speed = 1.0f;
@@ -54,16 +56,22 @@ public class GameManager : MonoBehaviour {
     }
 
     private int currentScore = 0;
+    private int numBlockFloorCreated = 0;
+    private int breakableIndex = 1;
 
     private Stack<IEnumerator> blockStack;
+    private AudioSource audioSource;
 
     void Start () {
         blockStack = new Stack<IEnumerator>();
+        audioSource = GetComponent<AudioSource>();
 
         blockFloor[1].SetBlocksBreakable(true);
         for (int i = 0; i < blockFloor.Length; i++) {
             blockFloor[i].SetBlocksProperty(BlockType.bomb, 20);
             blockFloor[i].SetBlocksHp(blockHpMinRange, blockHpMaxRange);
+            numBlockFloorCreated++;
+            StartCoroutine(SettingLevel(numBlockFloorCreated));
         }
         OnWaterMoveComplete();
     }
@@ -85,8 +93,21 @@ public class GameManager : MonoBehaviour {
 
                 if (hitBlock.IsBreakable) {
                     hitBlock.Hp--;
+                    iTween.ShakePosition(hitBlock.gameObject, iTween.Hash("name", "blockShake"
+                        , "x", 0.1f
+                        , "y", 0.1f
+                        , "time", 0.05f
+                        , "oncomplete", "hitBlock.ResetInitPos"
+                        , "oncompletetarget", hitBlock.gameObject));
+                    audioSource.PlayOneShot(hitSound);
 
                     if (hitBlock.Hp <= 0) {
+                        BlockFloor hitBlockFloor = hitBlock.GetComponentInParent<BlockFloor>();
+                        for (int i = 0; i < hitBlockFloor.Block.Length; i++) {
+                            iTween.StopByName(hitBlockFloor.Block[i].gameObject, "blockShake");
+                        }
+                        hitBlockFloor.ResetLocalPosition();
+                        hitBlockFloor.SetBlocksBreakable(false);
                         hitBlock.gameObject.SetActive(false);
                         if (hitBlock.BlockProperty == BlockType.bomb) {
                             UIMgr.OnGameOver();
@@ -109,6 +130,12 @@ public class GameManager : MonoBehaviour {
     }
 
     IEnumerator BlockMove () {
+        if(breakableIndex == blockFloor.Length - 1) {
+            breakableIndex = 0;
+        }
+        else {
+            breakableIndex++;
+        }
         iTween.MoveBy(blockFloor[0].transform.root.gameObject, iTween.Hash("y", -2.0f
             , "time", speed
             , "onupdate", "OnBlockMoveUpdate"
@@ -131,19 +158,15 @@ public class GameManager : MonoBehaviour {
 
     void OnBlockMoveUpdate () {
         for (int i = 0; i < blockFloor.Length; i++) {
+            blockFloor[i].ResetLocalPosition();
             //Set Blocks to be breakable
             if (Vector2.Distance(blockFloor[i].transform.position, breakablePos.transform.position) < 0.1f) {
-                blockFloor[i].SetBlocksBreakable(true);
-
-                //Set Previous Blocks to be unbreakable
-                int index;
-                if (i == 0) {
-                    index = blockFloor.Length - 1;
+                if (breakableIndex == i) {
+                    blockFloor[i].SetBlocksBreakable(true);
                 }
                 else {
-                    index = i - 1;
+                    blockFloor[i].SetBlocksBreakable(false);
                 }
-                blockFloor[index].SetBlocksBreakable(false);
             }
         }
     }
@@ -155,12 +178,14 @@ public class GameManager : MonoBehaviour {
                 blockFloor[i].transform.position = spawnPos.position;
                 blockFloor[i].SetBlocksActive(true);
                 blockFloor[i].ResetBlocksProperty();
+                blockFloor[i].ResetLocalPosition();
                 blockFloor[i].SetBlocksProperty(BlockType.bomb, 20);
                 blockFloor[i].SetBlocksHp(blockHpMinRange, blockHpMaxRange);
             }
         }
         UIMgr.DisplayScore(++currentScore);
-        StartCoroutine(SettingLevel(currentScore));
+        numBlockFloorCreated++;
+        StartCoroutine(SettingLevel(numBlockFloorCreated));
         isMoving = false;
     }
 
@@ -168,7 +193,7 @@ public class GameManager : MonoBehaviour {
         iTween.MoveTo(water, iTween.Hash("name", "waterMoveUp"
             ,"position", waterEndPos
             , "speed", waterSpeed
-            , "delay", 0.5f
+            , "delay", 0.1f
             , "easetype", iTween.EaseType.linear
             , "oncomplete", "OnGameOver"
             , "oncompletetarget", UIMgr.gameObject));           

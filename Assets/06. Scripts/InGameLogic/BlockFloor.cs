@@ -86,4 +86,10 @@ public class BlockFloor : MonoBehaviour {
             block[i].BlockProperty = BlockType.normal;
         }
     }
+
+    public void ResetLocalPosition() {
+        for(int i = 0; i < block.Length; i++) {
+            block[i].transform.localPosition = block[i].InitPos;
+        }
+    }
 }
