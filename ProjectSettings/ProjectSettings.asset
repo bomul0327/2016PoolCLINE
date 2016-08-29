@@ -160,7 +160,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/HBJ/Desktop/Unity Android KeyStore/user.keystore
+  AndroidKeystoreName: C:/Users/HBJ/Documents/2016PoolCLINE/Unity Android KeyStore/user.keystore
   AndroidKeyaliasName: poolcline2016up
   AndroidTVCompatibility: 0
   AndroidIsGame: 1

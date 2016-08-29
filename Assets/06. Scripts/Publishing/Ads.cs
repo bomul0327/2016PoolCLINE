@@ -3,10 +3,11 @@ using System.Collections;
 using UnityEngine.Advertisements;
 
 public class Ads : MonoBehaviour {
-    public int probShowAds = 10;
+
+    public int prob = 20;
 
     void Start() {
-        if (Random.Range(0, 99) < probShowAds) {
+        if (Random.Range(0, 99) < PlayerPrefs.GetInt("ProbShowAds", prob)) {
             ShowAd();
         }
     }
