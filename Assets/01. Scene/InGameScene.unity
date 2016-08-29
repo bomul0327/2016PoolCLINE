@@ -1002,10 +1002,10 @@ MonoBehaviour:
   waterSpeed: 0.67
   blockHpMinRange: 1
   blockHpMaxRange: 5
+  UIMgr: {fileID: 636755483}
   maxCycle: 3
   minCycle: 6
   waterSpeedCycle: 10
-  UIMgr: {fileID: 636755483}
 --- !u!4 &328560894 stripped
 Transform:
   m_PrefabParentObject: {fileID: 405292, guid: 9d8a29acaec4b1b4f9a0b47e98a624c1, type: 2}
@@ -2013,6 +2013,7 @@ Transform:
   - {fileID: 1224228356}
   - {fileID: 1555565831}
   - {fileID: 13863650}
+  - {fileID: 1738250738}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!1 &716883331
@@ -2163,7 +2164,6 @@ Transform:
   - {fileID: 1756682264}
   - {fileID: 657972755}
   - {fileID: 1397384931}
-  - {fileID: 1738250738}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!1 &836821152
@@ -2903,8 +2903,8 @@ Transform:
   m_LocalScale: {x: 1.52, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 771123877}
-  m_RootOrder: 4
+  m_Father: {fileID: 705175294}
+  m_RootOrder: 7
 --- !u!1 &1756682262
 GameObject:
   m_ObjectHideFlags: 0
