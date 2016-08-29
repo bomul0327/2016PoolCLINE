@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using GooglePlayGames;
 
 public class MainUI : MonoBehaviour {
     [SerializeField]

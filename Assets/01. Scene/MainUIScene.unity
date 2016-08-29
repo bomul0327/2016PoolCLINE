@@ -301,6 +301,7 @@ GameObject:
   - 114: {fileID: 456162155}
   - 114: {fileID: 456162154}
   - 114: {fileID: 456162158}
+  - 114: {fileID: 456162159}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -399,6 +400,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playButtonImage: {fileID: 1760554210}
   logo: {fileID: 154450422}
+--- !u!114 &456162159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 456162153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df43bb5b253cc6946a63132c9489a6e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &978015959
 GameObject:
   m_ObjectHideFlags: 0
