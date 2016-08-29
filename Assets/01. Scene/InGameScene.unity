@@ -999,7 +999,7 @@ MonoBehaviour:
   - {fileID: 1453900093}
   - {fileID: 644172579}
   water: {fileID: 1173229813}
-  hitSound: {fileID: 8300000, guid: 08eb59105d87a5e45993290c3b219940, type: 3}
+  hitSound: {fileID: 8300000, guid: 4847e733c2b14e244a1cced31c6a83d5, type: 3}
   speed: 0.5
   waterSpeed: 0.67
   blockHpMinRange: 1
