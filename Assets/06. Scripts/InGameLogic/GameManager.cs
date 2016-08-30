@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour {
     private int minCycle = 6;
     [SerializeField]
     private int waterSpeedCycle = 10;
+    [SerializeField]
+    private int waterSpeedDownLevel = 40; // 특정 점수가 되면 물이 올라오는 속도가 줄어듬.
+    [SerializeField]
+    private float waterSpeedDecrement = 0.2f; // 특정 점수가 되었을 때, 속도가 줄어드는 양
 
     [Space(10)]
 
@@ -102,6 +106,7 @@ public class GameManager : MonoBehaviour {
 
                     if (hit.collider && hit.transform.CompareTag("Block")) {
                         Block hitBlock = hit.transform.GetComponent<Block>();
+                        StartCoroutine(GettingAchievement());
 
                         if (hitBlock.IsBreakable) {
                             hitBlock.Hp--;
@@ -250,10 +255,14 @@ public class GameManager : MonoBehaviour {
             , "oncompletetarget", UIMgr.gameObject));           
     }
 
-    IEnumerator SettingLevel (int currentScore) {
-        blockHpMaxRange =  5 + currentScore / maxCycle;
-        blockHpMinRange = 1 + currentScore / minCycle;
-        waterSpeed = 0.67f + ((currentScore / waterSpeedCycle));
+    IEnumerator SettingLevel (int numBlockFloorCreated) {
+        blockHpMaxRange = 5 + numBlockFloorCreated / maxCycle;
+        blockHpMinRange = 1 + numBlockFloorCreated / minCycle;
+
+        if (numBlockFloorCreated < waterSpeedDownLevel) {
+            waterSpeed = 0.67f + ((numBlockFloorCreated / waterSpeedCycle));
+        }
+
         yield return null;
     }
 
@@ -261,6 +270,43 @@ public class GameManager : MonoBehaviour {
         float randomPitch = Random.Range(lowPitch, highPitch);
         audioSource.pitch = randomPitch;
         audioSource.PlayOneShot(sound);
+        yield return null;
+    }
+
+    IEnumerator GettingAchievement () {
+        int totalTouch = PlayerPrefs.GetInt("TotalTouch", 0);
+        totalTouch++;
+        PlayerPrefs.SetInt("TotalTouch", totalTouch);
+        if (totalTouch >= 1) {
+            Social.ReportProgress("CgkI99CpsJILEAIQAg", 100.0f, (bool success) => {
+                if (success) {
+                    Debug.Log("Get Achievement");
+                }
+                else {
+                    Debug.Log("Did not get Achievement");
+                }
+            });
+        }
+        if (totalTouch >= 10) {
+            Social.ReportProgress("CgkI99CpsJILEAIQAw", 100.0f, (bool success) => {
+                if (success) {
+                    Debug.Log("Get Achievement");
+                }
+                else {
+                    Debug.Log("Did not get Achievement");
+                }
+            });
+        }
+        if (totalTouch >= 100) {
+            Social.ReportProgress("CgkI99CpsJILEAIQBA", 100.0f, (bool success) => {
+                if (success) {
+                    Debug.Log("Get Achievement");
+                }
+                else {
+                    Debug.Log("Did not get Achievement");
+                }
+            });
+        }
         yield return null;
     }
 }

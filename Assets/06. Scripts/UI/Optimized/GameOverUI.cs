@@ -34,7 +34,14 @@ public class GameOverUI : MonoBehaviour {
                 Debug.Log("BestScore did not updated to Leaderboard");
             }
         });
-
+        Social.ReportProgress("CgkI99CpsJILEAIQBQ", 100.0f, (bool success) => {
+            if (success) {
+                Debug.Log("Get Achievement");
+            }
+            else {
+                Debug.Log("Did not get Achievement");
+            }
+        });
     }
     
     public void OnBackClick () {

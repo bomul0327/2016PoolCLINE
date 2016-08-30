@@ -24,11 +24,12 @@
 
 public static class UpResources
 {
-        public const string achievement_test5 = "CgkI99CpsJILEAIQBQ"; // <GPGSID>
-        public const string achievement_test1 = "CgkI99CpsJILEAIQAQ"; // <GPGSID>
-        public const string achievement_test2 = "CgkI99CpsJILEAIQAg"; // <GPGSID>
-        public const string achievement_test3 = "CgkI99CpsJILEAIQAw"; // <GPGSID>
-        public const string achievement_test4 = "CgkI99CpsJILEAIQBA"; // <GPGSID>
+        public const string leaderboard__ = "CgkI99CpsJILEAIQBg"; // <GPGSID>
+        public const string achievement_100 = "CgkI99CpsJILEAIQBA"; // <GPGSID>
+        public const string achievement_1 = "CgkI99CpsJILEAIQAg"; // <GPGSID>
+        public const string achievement___ = "CgkI99CpsJILEAIQBQ"; // <GPGSID>
+        public const string achievement__ = "CgkI99CpsJILEAIQAQ"; // <GPGSID>
+        public const string achievement_10 = "CgkI99CpsJILEAIQAw"; // <GPGSID>
 
 }
 
